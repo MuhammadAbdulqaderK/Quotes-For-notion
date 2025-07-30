@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Quote</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .quote-box {
+      max-width: 600px;
+      padding: 24px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .quote {
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 16px;
+    }
+
+    .author {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .refresh {
+      margin-top: 20px;
+      background: none;
+      border: 1px solid #ccc;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .refresh:hover {
+      border-color: #888;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-box">
+    <div class="quote" id="quote"></div>
+    <div class="author" id="author"></div>
+    <button class="refresh" onclick="loadRandomQuote()">New Quote</button>
+  </div>
+
+  <script>
+    const quotes = [
+      { text: "Discipline equals freedom.", author: "Jocko Willink" },
+      { text: "Do not explain. Your friends do not need it, and your enemies will not believe you.", author: "Elbert Hubbard" },
+      { text: "What stands in the way becomes the way.", author: "Marcus Aurelius" },
+      { text: "He who has a why can bear almost any how.", author: "Friedrich Nietzsche" },
+      { text: "The only Zen you find on the tops of mountains is the Zen you bring up there.", author: "Robert M. Pirsig" }
+    ];
+
+    function loadRandomQuote() {
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quote').textContent = `"${quote.text}"`;
+      document.getElementById('author').textContent = `— ${quote.author}`;
+    }
+
+    loadRandomQuote(); // Initial load
+  </script>
+</body>
+</html>
