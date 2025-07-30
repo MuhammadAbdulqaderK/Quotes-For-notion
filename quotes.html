@@ -27,73 +27,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حكمة اليوم</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #1e1e1e;
-            color: #ffffff;
-            font-family: 'Noto Naskh Arabic', 'Amiri', serif;
-            transition: background-color 0.3s ease;
-            text-align: center;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', 'Noto Naskh Arabic', Tahoma, sans-serif;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 1rem;
+    }
 
-        .container {
-            max-width: 800px;
-            padding: 30px;
-            background-color: #282828;
-            border-radius: 16px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
-        }
+    .quote-box {
+        max-width: 800px;
+        text-align: center;
+        background-color: #2c2c2c;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
 
+    .quote {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        margin-bottom: 1.5rem;
+        direction: rtl;
+    }
+
+    .author {
+        font-size: 1.2rem;
+        color: #aaaaaa;
+        direction: rtl;
+    }
+
+    .restart-button {
+        margin-top: 2rem;
+        background-color: transparent;
+        border: 1px solid #444;
+        color: #ccc;
+        padding: 0.6rem 1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+    }
+
+    .restart-button:hover {
+        background-color: #333;
+        border-color: #666;
+        color: #fff;
+    }
+
+    .restart-icon {
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 600px) {
         .quote {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
         }
 
         .author {
-            font-size: 1.2rem;
-            color: #aaaaaa;
-        }
-
-        .refresh-btn {
-            margin-top: 25px;
-            padding: 10px 20px;
             font-size: 1rem;
-            background-color: #3e3e3e;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s ease;
         }
 
-        .refresh-btn:hover {
-            background-color: #505050;
+        .restart-button {
+            padding: 0.5rem 0.8rem;
         }
-
-        .refresh-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: #ffffff;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="quote" id="quote"></div>
         <div class="author" id="author"></div>
-        <button class="refresh-btn" onclick="location.reload()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 .34-.03.67-.08 1h2.02c.04-.33.06-.66.06-1 0-4.42-3.58-8-8-8zm-6 6c0-.34.03-.67.08-1H4.06c-.04.33-.06.66-.06 1 0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6z"/></svg>
-            إعادة
-        </button>
+       <button class="restart-button" onclick="location.reload()">
+    <span class="restart-icon">🔁</span>
+</button>
     </div>
 
     <script>
