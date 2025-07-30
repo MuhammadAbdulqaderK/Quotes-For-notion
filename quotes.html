@@ -1,81 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Random Quote</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اقتباس اليوم</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #fff;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #191919;
+      color: #e5e5e5;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-    }
-
-    .quote-box {
-      max-width: 600px;
-      padding: 24px;
-      background: #f9f9f9;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       text-align: center;
-    }
-
-    .quote {
-      font-size: 1.2rem;
-      color: #222;
-      margin-bottom: 16px;
-    }
-
-    .author {
-      font-size: 1rem;
-      color: #666;
-    }
-
-    .refresh {
-      margin-top: 20px;
-      background: none;
-      border: 1px solid #ccc;
-      padding: 8px 16px;
-      cursor: pointer;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      color: #333;
       transition: all 0.3s ease;
     }
 
-    .refresh:hover {
-      border-color: #888;
-      color: #000;
+    .card {
+      background-color: #1f1f1f;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .quote {
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+    }
+
+    .author {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #aaaaaa;
+    }
+
+    .refresh-btn {
+      background-color: #2a2a2a;
+      color: #e5e5e5;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .refresh-btn:hover {
+      background-color: #333;
+    }
+
+    .icon {
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <div class="quote-box">
+
+  <div class="card">
     <div class="quote" id="quote"></div>
     <div class="author" id="author"></div>
-    <button class="refresh" onclick="loadRandomQuote()">New Quote</button>
   </div>
+  <button class="refresh-btn" onclick="showRandomQuote()">
+    <span class="icon">🔁</span>
+    اقتباس جديد
+  </button>
 
   <script>
     const quotes = [
-      { text: "Discipline equals freedom.", author: "Jocko Willink" },
-      { text: "Do not explain. Your friends do not need it, and your enemies will not believe you.", author: "Elbert Hubbard" },
-      { text: "What stands in the way becomes the way.", author: "Marcus Aurelius" },
-      { text: "He who has a why can bear almost any how.", author: "Friedrich Nietzsche" },
-      { text: "The only Zen you find on the tops of mountains is the Zen you bring up there.", author: "Robert M. Pirsig" }
+      { text: "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ", author: "سورة البقرة 216" },
+      { text: "قَدْ أَفْلَحَ مَن زَكَّاهَا", author: "الشمس 9" },
+      { text: "كفى بالمرء كذبًا أن يحدث بكل ما سمع", author: "الرسول ﷺ" },
+      { text: "من راقب الناس مات همًّا", author: "مثل عربي" },
+      { text: "إذا الشعبُ يومًا أراد الحياة فلا بد أن يستجيب القدر", author: "أبو القاسم الشابي" },
+      { text: "دع المقادير تجري في أعنتها * ولا تبيتن إلا خالي البال", author: "الإمام الشافعي" },
+      { text: "الصبر مفتاح الفرج", author: "مثل عربي" },
+      { text: "وَفِي السَّمَاءِ رِزْقُكُمْ وَمَا تُوعَدُونَ", author: "سورة الذاريات 22" },
+      { text: "كُلُّ مَنْ عَلَيْهَا فَانٍ * وَيَبْقَىٰ وَجْهُ رَبِّكَ", author: "سورة الرحمن 26-27" },
+      { text: "اعمل لدنياك كأنك تعيش أبدا واعمل لآخرتك كأنك تموت غدا", author: "علي بن أبي طالب" },
+      { text: "لكل شيء إذا ما تم نقصان * فلا يُغرُّ بطيب العيش إنسان", author: "أبو البقاء الرندي" },
+      { text: "نعيب زماننا والعيب فينا * وما لزماننا عيب سوانا", author: "الإمام الشافعي" },
+      { text: "وإنما الأمم الأخلاق ما بقيت * فإن همُ ذهبت أخلاقهم ذهبوا", author: "أحمد شوقي" },
+      { text: "الحكمة ضالة المؤمن، أنى وجدها فهو أحق الناس بها", author: "حديث" },
+      { text: "وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ", author: "سورة النحل 127" },
+      { text: "كل تأخيرة فيها خيرة", author: "مثل" },
+      { text: "إن مع العسر يسرا", author: "الشرح 6" },
+      { text: "رب ضارة نافعة", author: "مثل عربي" },
+      { text: "العقل زينة", author: "مثل" },
+      { text: "ما طار طير وارتفع إلا كما طار وقع", author: "مثل" },
+      { text: "قد يُعطيك الله وأنت لا تسأل، وقد يحرمك وأنت تبكي", author: "مجهول" },
+      { text: "وَرَبُّكَ يُرَبِّيكَ بِالْمَنَعِ لَا بِالْعَطَاءِ", author: "ابن الجوزي" },
+      { text: "سَتَجِدُ مَنْ يَسْقِيكَ وَإِنْ تَجَاهَلَكَ الْبَشَرُ، فَالرِّزْقُ مِنَ السَّمَاءِ لَا مِنَ الْبَشَرِ", author: "مجهول" },
+      { text: "إِذَا مَا الْخَالِقُ أَرَادَ لَكَ أَمْرًا، سَخَّرَ لَكَ الْكَوْنَ وَلَوْ كَانَ مُعْجِزًا", author: "مجهول" },
+      { text: "الصمتُ حُكمٌ، وقليلٌ فاعله", author: "لقمان الحكيم" },
+      { text: "إذا لم تستحِ فاصنع ما شئت", author: "الرسول ﷺ" },
+      { text: "لا تُرهق قلبك... فالله أرحم من أن يُديم عليك الحزن", author: "مجهول" },
+      { text: "عسى تأخيرك عن سفر خير", author: "ابن عطاء الله السكندري" },
+      { text: "ما خاب من قال: يا الله", author: "مجهول" }
     ];
 
-    function loadRandomQuote() {
+    function showRandomQuote() {
       const quote = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById('quote').textContent = `"${quote.text}"`;
+      document.getElementById('quote').textContent = quote.text;
       document.getElementById('author').textContent = `— ${quote.author}`;
     }
 
-    loadRandomQuote(); // Initial load
+    window.onload = showRandomQuote;
   </script>
 </body>
 </html>
