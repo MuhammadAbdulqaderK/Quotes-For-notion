@@ -10,7 +10,7 @@
 
         /* Notion Dark Mode inspired palette */
         :root {
-            --background-color: #242424; /* Deep Charcoal Gray (Notion background) */
+            --background-color: #2F3438; /* Updated to user's specified background hex code */
             --card-color: #3A3A3A;      /* Slightly lighter surface (Notion card/block) */
             --text-color: #DCDCDC;      /* Light Gray (Main text) */
             --secondary-text-color: #A9A9A9; /* Muted Gray (Author text) */
@@ -27,34 +27,38 @@
             font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
+            
+            /* CENTERING AND RESIZABILITY: Use Flexbox to ensure content is centered vertically and horizontally */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            align-items: center; /* Centers items horizontally */
+            justify-content: center; /* Centers items vertically */
+            min-height: 100vh; /* Ensures the body takes up the full viewport height */
+            
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-            /* Removed distracting background animations/gradients for a flat look */
+            overflow: auto; /* Allows scrolling if content exceeds height */
         }
         
         .card {
             background-color: var(--card-color);
             border-radius: 8px; /* Slightly sharper corners, typical of Notion */
             padding: 2.5rem 2rem;
-            width: 90%;
-            max-width: 650px;
-            /* Subtler shadow */
+            width: 90%; /* Responsive width on smaller screens */
+            max-width: 650px; /* Max width on desktop screens */
+            
             box-shadow: 0 4px 12px var(--shadow-color);
             margin-bottom: 2rem;
-            border: 1px solid var(--card-border); /* Subtle dividing line */
+            border: 1px solid var(--card-border); 
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease; /* Smooth resizing/centering */
         }
 
         .quote {
-            font-size: 1.8rem;
+            /* Responsive font size for large quote text */
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             line-height: 1.7;
             margin-bottom: 1.5rem;
             font-weight: 400;
@@ -64,10 +68,10 @@
         
         .author {
             margin-top: 1rem;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             color: var(--secondary-text-color);
             font-style: italic;
-            font-weight: 400; /* Lighter font weight for secondary text */
+            font-weight: 400; 
             transition: opacity 0.5s ease-in-out; 
         }
 
@@ -83,20 +87,19 @@
         }
 
         .refresh-btn {
-            /* Flat, subtle button style inspired by Notion's controls */
             background-color: var(--primary-button);
             color: var(--text-color);
             border: 1px solid var(--card-border);
             padding: 0.75rem 1.75rem;
             font-size: 1rem;
-            border-radius: 4px; /* Square/Notion-like corners */
+            border-radius: 4px; 
             cursor: pointer;
-            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
             display: flex;
             align-items: center;
             gap: 0.75rem;
             font-weight: 600;
-            box-shadow: none; /* No aggressive shadow */
+            box-shadow: none; 
             letter-spacing: 0.5px;
         }
 
@@ -107,10 +110,6 @@
 
         .refresh-btn:active {
             transform: translateY(1px);
-        }
-
-        .icon {
-            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -356,3 +355,4 @@
 
 </body>
 </html>
+
